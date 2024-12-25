@@ -1,0 +1,24 @@
+Tiago Carvalho - Trainer
+PityChurchProgressive
+
+Class Details
+
+Microsoft Email ID / Username: user40
+VPN Username: user40
+VPN/Microsoft Password: Wc@qKT32
+
+192.168.40.206
+root
+Toor2024!
+
+in scope :
+192.168.3.0/14
+192.168.40.0/24
+
+not in scope :
+192.168.4.0/24
+192.168.5.0/24
+
+start here - mkdir -p /root/wkspace/loot && cd /root/wkspace
+
+pastebin

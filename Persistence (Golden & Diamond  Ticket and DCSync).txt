@@ -1,0 +1,10 @@
+runas /user:"plum\backupsvc" powershell.exe
+Password: %Qu1t3S3cUre3P@sS$
+
+Start-Process powershell.exe -Credential (new-object -typename System.Management.Automation.PSCredential -argumentlist "plum\backupsvc", (ConvertTo-SecureString -AsPlainText -String %Qu1t3S3cUre3P@sS$ -Force)) -ArgumentList "Start-Process powershell.exe -Verb runAs"
+
+
+Get-ADDomain | select dnsroot
+
+
+Get-ADDomain | select domainsid

